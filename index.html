@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>木と暮らし — natural select shop</title>
+<meta name="description" content="家族みんなが安心して使える自然派アイテムを厳選するオンラインセレクトショップ「木と暮らし」">
+<meta property="og:title" content="木と暮らし — natural select shop">
+<meta property="og:description" content="家族みんなが安心して使える自然派アイテムを厳選。日本全国の作り手から届くオーガニック・自然派アイテム。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#FAF7F2;--bg-sub:#F3EDE4;--text:#3D3226;--text-sub:#7A6B5D;
+--accent1:#8B7355;--accent2:#6B8F71;--accent3:#C4956A;
+--cream:#FFF8F0;--sage:#D4DDD5;
+--radius:12px;--shadow:0 4px 24px rgba(61,50,38,.08);
+--ff-heading:'Zen Old Mincho',serif;
+--ff-body:'Zen Kaku Gothic New',sans-serif;
+--ff-en:'Cormorant Garamond',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Section Label */
+.section-label{font-family:var(--ff-en);font-style:italic;color:var(--accent2);font-size:.95rem;letter-spacing:.15em;margin-bottom:8px}
+.section-title{font-family:var(--ff-heading);font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;margin-bottom:16px;line-height:1.4}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 36px;border-radius:40px;font-size:.95rem;font-weight:500;transition:all .3s ease}
+.btn-primary{background:var(--accent2);color:#fff}
+.btn-primary:hover{background:#5a7e60;transform:translateY(-2px);box-shadow:0 6px 20px rgba(107,143,113,.3)}
+.btn-secondary{border:1.5px solid var(--accent2);color:var(--accent2);background:transparent}
+.btn-secondary:hover{background:var(--accent2);color:#fff}
+
+/* ===== 1. TOP BAR ===== */
+.top-bar{background:var(--accent2);color:#fff;text-align:center;padding:10px 16px;font-size:.82rem;letter-spacing:.05em}
+
+/* ===== 2. HEADER ===== */
+.header{position:sticky;top:0;z-index:100;background:rgba(250,247,242,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(61,50,38,.06);transition:box-shadow .3s}
+.header.scrolled{box-shadow:var(--shadow)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{display:flex;flex-direction:column}
+.logo-main{font-family:var(--ff-heading);font-size:1.5rem;font-weight:700;line-height:1.2}
+.logo-sub{font-family:var(--ff-en);font-style:italic;font-size:.7rem;color:var(--text-sub);letter-spacing:.15em}
+.nav{display:flex;gap:28px}
+.nav a{font-size:.88rem;position:relative;padding:4px 0;transition:color .3s}
+.nav a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent2);transition:width .3s}
+.nav a:hover{color:var(--accent2)}
+.nav a:hover::after{width:100%}
+.header-icons{display:flex;align-items:center;gap:16px}
+.header-icons button{position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .3s}
+.header-icons button:hover{background:var(--sage)}
+.header-icons svg{width:20px;height:20px;stroke:var(--text);stroke-width:1.8;fill:none}
+.cart-badge{position:absolute;top:2px;right:2px;background:var(--accent3);color:#fff;font-size:.65rem;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
+.hamburger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer}
+.hamburger span{display:block;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile nav */
+.mobile-nav{position:fixed;top:72px;left:0;right:0;background:rgba(250,247,242,.98);backdrop-filter:blur(12px);padding:24px;display:none;flex-direction:column;gap:20px;border-bottom:1px solid rgba(61,50,38,.08);z-index:99}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:1rem;padding:8px 0;border-bottom:1px solid rgba(61,50,38,.06)}
+
+/* ===== 3. HERO ===== */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.hero-grid-item{background-size:cover;background-position:center}
+.hero-grid-item:nth-child(1){background-image:url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=700&h=900&fit=crop')}
+.hero-grid-item:nth-child(2){background-image:url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=900&fit=crop')}
+.hero-grid-item:nth-child(3){background-image:url('https://images.unsplash.com/photo-1563453392212-326f5e854473?w=700&h=900&fit=crop')}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,247,242,0) 20%,rgba(250,247,242,.7) 60%,rgba(250,247,242,.98) 90%)}
+.hero-content{position:relative;z-index:2;padding:0 24px 60px;max-width:1200px;margin:0 auto;width:100%;text-align:center}
+.hero-tag{font-family:var(--ff-en);font-style:italic;color:var(--accent2);font-size:1rem;letter-spacing:.2em;margin-bottom:16px;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-title{font-family:var(--ff-heading);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:700;margin-bottom:20px;line-height:1.5;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-desc{color:var(--text-sub);font-size:clamp(.9rem,1.5vw,1.1rem);max-width:600px;margin:0 auto 32px;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== 4. FEATURES STRIP ===== */
+.features{background:var(--cream);padding:28px 0;overflow-x:auto}
+.features-inner{display:flex;justify-content:center;gap:40px;min-width:max-content;padding:0 24px}
+.feature-item{display:flex;align-items:center;gap:8px;font-size:.85rem;white-space:nowrap;color:var(--text-sub)}
+.feature-item span:first-child{font-size:1.2rem}
+
+/* ===== 5. CATEGORY ===== */
+.categories{padding:80px 0}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:40px}
+.cat-card{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;cursor:pointer}
+.cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.cat-card:hover img{transform:scale(1.08)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(61,50,38,.7) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff}
+.cat-overlay h3{font-family:var(--ff-heading);font-size:1.1rem}
+.cat-overlay span{font-family:var(--ff-en);font-size:.8rem;opacity:.8}
+
+/* ===== 6. SHOP / NEW ARRIVALS ===== */
+.shop{background:var(--bg-sub);padding:80px 0}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-top:40px}
+.product-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(61,50,38,.12)}
+.product-img-wrap{position:relative;aspect-ratio:1;overflow:hidden;background:var(--bg-sub)}
+.product-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .product-img-wrap img{transform:scale(1.05)}
+.product-badge{position:absolute;top:12px;left:12px;padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:700;color:#fff}
+.badge-popular{background:var(--accent3)}
+.badge-new{background:var(--accent2)}
+.badge-limited{background:#C25B56}
+.fav-btn{position:absolute;top:12px;right:12px;width:36px;height:36px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.fav-btn:hover{transform:scale(1.1)}
+.fav-btn svg{width:18px;height:18px;stroke:var(--accent3);fill:none;stroke-width:2;transition:fill .3s}
+.fav-btn.active svg{fill:var(--accent3)}
+.product-info{padding:16px 20px 20px}
+.product-brand{font-size:.72rem;color:var(--text-sub);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.product-name{font-family:var(--ff-heading);font-size:1rem;font-weight:700;margin-bottom:6px}
+.product-desc{font-size:.8rem;color:var(--text-sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;line-height:1.6}
+.product-footer{display:flex;align-items:center;justify-content:space-between}
+.product-price{font-family:var(--ff-heading);font-size:1.15rem;font-weight:700}
+.product-price small{font-size:.7rem;font-weight:400;color:var(--text-sub)}
+.add-cart-btn{padding:8px 18px;border-radius:40px;background:var(--accent2);color:#fff;font-size:.78rem;font-weight:500;transition:all .3s}
+.add-cart-btn:hover{background:#5a7e60;transform:translateY(-1px)}
+
+/* ===== 7. RANKING ===== */
+.ranking{background:var(--cream);padding:80px 0}
+.ranking-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-top:40px;counter-reset:rank}
+.rank-card{counter-increment:rank;position:relative;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.rank-card:hover{transform:translateY(-4px)}
+.rank-card::before{content:counter(rank);position:absolute;top:12px;left:12px;z-index:2;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-en);font-weight:700;font-size:.9rem;color:#fff}
+.rank-card:nth-child(1)::before{background:linear-gradient(135deg,#D4A843,#C4963A)}
+.rank-card:nth-child(2)::before{background:linear-gradient(135deg,#A8A8A8,#909090)}
+.rank-card:nth-child(3)::before{background:linear-gradient(135deg,#CD7F32,#B56E28)}
+.rank-card:nth-child(n+4)::before{background:var(--text-sub)}
+.rank-img{aspect-ratio:1;overflow:hidden}
+.rank-img img{width:100%;height:100%;object-fit:cover}
+.rank-info{padding:14px 16px}
+.rank-name{font-size:.88rem;font-weight:700;margin-bottom:6px;font-family:var(--ff-heading)}
+.rank-stars{color:var(--accent3);font-size:.8rem;margin-bottom:4px}
+.rank-price{font-family:var(--ff-heading);font-weight:700;font-size:1rem}
+
+/* ===== 8. STORY ===== */
+.story{padding:80px 0}
+.story-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.story-images{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.story-images .img-full{grid-column:1/-1;border-radius:var(--radius);overflow:hidden;aspect-ratio:16/9}
+.story-images .img-half{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3}
+.story-images img{width:100%;height:100%;object-fit:cover}
+.story-text p{color:var(--text-sub);margin-bottom:20px;line-height:2}
+
+/* ===== 9. SEASONAL RECIPES ===== */
+.seasonal{padding:80px 0;background:linear-gradient(to bottom,var(--bg),var(--sage))}
+.recipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.recipe-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s}
+.recipe-card:hover{transform:translateY(-4px)}
+.recipe-img{aspect-ratio:3/2;overflow:hidden}
+.recipe-img img{width:100%;height:100%;object-fit:cover}
+.recipe-body{padding:20px}
+.recipe-body h3{font-family:var(--ff-heading);font-size:1.05rem;margin-bottom:8px}
+.recipe-body p{font-size:.85rem;color:var(--text-sub);margin-bottom:12px}
+.recipe-meta{display:flex;gap:12px;flex-wrap:wrap}
+.recipe-meta span{font-size:.75rem;padding:4px 10px;border-radius:20px;background:var(--sage);color:var(--accent2)}
+
+/* ===== 10. INSTAGRAM ===== */
+.instagram{background:var(--cream);padding:80px 0}
+.insta-handle{font-family:var(--ff-en);font-style:italic;color:var(--text-sub);font-size:1rem;letter-spacing:.1em}
+.insta-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:40px 0}
+.insta-item{aspect-ratio:1;overflow:hidden;border-radius:6px;position:relative;cursor:pointer}
+.insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.insta-item:hover img{transform:scale(1.1)}
+.insta-overlay{position:absolute;inset:0;background:rgba(61,50,38,.5);display:flex;align-items:center;justify-content:center;gap:16px;opacity:0;transition:opacity .3s;color:#fff;font-size:.8rem}
+.insta-item:hover .insta-overlay{opacity:1}
+.btn-instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:14px 36px;border-radius:40px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:transform .3s,box-shadow .3s}
+.btn-instagram:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,39,67,.3)}
+
+/* ===== 11. REVIEWS ===== */
+.reviews{padding:80px 0}
+.review-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:20px 0;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.review-track::-webkit-scrollbar{display:none}
+.review-card{min-width:320px;max-width:360px;background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);scroll-snap-align:start;flex-shrink:0}
+.review-stars{color:var(--accent3);font-size:.95rem;margin-bottom:12px}
+.review-text{font-size:.88rem;color:var(--text-sub);line-height:1.8;margin-bottom:20px}
+.review-author{display:flex;align-items:center;gap:12px}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-family:var(--ff-heading);font-weight:700;color:var(--accent2);font-size:.9rem}
+.review-name{font-weight:700;font-size:.88rem}
+.review-attr{font-size:.75rem;color:var(--text-sub)}
+
+/* ===== 12. MAMA FEATURES ===== */
+.mama{background:var(--bg-sub);padding:80px 0}
+.mama-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:40px}
+.mama-card{background:#fff;border-radius:var(--radius);padding:28px;box-shadow:var(--shadow);transition:transform .3s}
+.mama-card:hover{transform:translateY(-4px)}
+.mama-icon{font-size:2rem;margin-bottom:12px}
+.mama-card h3{font-family:var(--ff-heading);font-size:1rem;margin-bottom:8px}
+.mama-card p{font-size:.85rem;color:var(--text-sub);line-height:1.7}
+
+/* ===== 13. NEWSLETTER ===== */
+.newsletter{padding:80px 0}
+.newsletter-card{max-width:800px;margin:0 auto;background:linear-gradient(135deg,var(--accent2),#5a7e60);border-radius:var(--radius);padding:48px;text-align:center;color:#fff;box-shadow:0 8px 40px rgba(107,143,113,.25)}
+.newsletter-card h2{font-family:var(--ff-heading);font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:12px}
+.newsletter-card p{opacity:.9;font-size:.9rem;margin-bottom:28px}
+.nl-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.nl-form input{flex:1;padding:14px 20px;border:none;border-radius:40px;font-size:.9rem;font-family:var(--ff-body);outline:none}
+.nl-form button{padding:14px 28px;border-radius:40px;background:var(--accent3);color:#fff;font-weight:700;font-size:.9rem;border:none;cursor:pointer;transition:all .3s;white-space:nowrap}
+.nl-form button:hover{background:#b58359;transform:translateY(-1px)}
+
+/* ===== 14. FOOTER ===== */
+.footer{background:var(--text);color:rgba(255,255,255,.7);padding:60px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand .logo-main{color:#fff;font-size:1.3rem}
+.footer-brand .logo-sub{color:rgba(255,255,255,.5)}
+.footer-brand p{font-size:.82rem;margin-top:12px;line-height:1.8;color:rgba(255,255,255,.5)}
+.footer h4{color:#fff;font-family:var(--ff-en);font-size:.85rem;letter-spacing:.15em;margin-bottom:16px}
+.footer ul{list-style:none}
+.footer li{margin-bottom:10px}
+.footer li a{font-size:.82rem;transition:color .3s}
+.footer li a:hover{color:var(--accent2)}
+.footer-bottom{text-align:center;padding:24px 0;font-size:.75rem;color:rgba(255,255,255,.4)}
+
+/* ===== CART DRAWER ===== */
+.cart-overlay{position:fixed;inset:0;background:rgba(61,50,38,.4);z-index:200;opacity:0;visibility:hidden;transition:all .3s}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:420px;max-width:90vw;background:#fff;z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.1)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid rgba(61,50,38,.08)}
+.cart-header h3{font-family:var(--ff-heading);font-size:1.1rem}
+.cart-close{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .3s}
+.cart-close:hover{background:var(--bg-sub)}
+.cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+.cart-empty{text-align:center;padding:60px 0;color:var(--text-sub)}
+.cart-item{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(61,50,38,.06)}
+.cart-item-img{width:64px;height:64px;border-radius:8px;overflow:hidden;flex-shrink:0;background:var(--bg-sub)}
+.cart-item-img img{width:100%;height:100%;object-fit:cover}
+.cart-item-info{flex:1}
+.cart-item-brand{font-size:.68rem;color:var(--text-sub);letter-spacing:.1em}
+.cart-item-name{font-size:.85rem;font-weight:700;margin:2px 0 8px}
+.cart-qty{display:flex;align-items:center;gap:8px}
+.cart-qty button{width:28px;height:28px;border-radius:50%;border:1px solid rgba(61,50,38,.15);display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .3s}
+.cart-qty button:hover{background:var(--bg-sub)}
+.cart-qty span{font-size:.85rem;font-weight:500;min-width:20px;text-align:center}
+.cart-item-price{font-family:var(--ff-heading);font-weight:700;font-size:.9rem;text-align:right;align-self:center}
+.cart-footer{padding:20px 24px;border-top:1px solid rgba(61,50,38,.08)}
+.cart-total{display:flex;justify-content:space-between;margin-bottom:16px}
+.cart-total span:first-child{font-weight:500}
+.cart-total span:last-child{font-family:var(--ff-heading);font-size:1.2rem;font-weight:700}
+.checkout-btn{width:100%;padding:16px;border-radius:40px;background:var(--accent2);color:#fff;font-size:1rem;font-weight:700;text-align:center;transition:all .3s}
+.checkout-btn:hover{background:#5a7e60}
+
+/* ===== TOAST ===== */
+.toast-container{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{background:var(--text);color:#fff;padding:12px 28px;border-radius:40px;font-size:.85rem;box-shadow:0 4px 20px rgba(0,0,0,.2);animation:toastIn .3s,toastOut .3s 2.2s forwards;white-space:nowrap}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes toastOut{to{opacity:0;transform:translateY(16px)}}
+
+/* ===== FADE-IN ===== */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+.nav{display:none}
+.hamburger{display:flex}
+.story-inner{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+.ranking-grid{grid-template-columns:repeat(3,1fr)}
+.cat-grid{grid-template-columns:repeat(3,1fr)}
+.insta-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:600px){
+.hero{min-height:80vh}
+section,.shop,.ranking,.mama,.instagram,.reviews,.seasonal,.newsletter,.story,.categories{padding:50px 0}
+.product-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.cat-grid{grid-template-columns:repeat(2,1fr)}
+.recipe-grid{grid-template-columns:1fr}
+.ranking-grid{grid-template-columns:repeat(2,1fr)}
+.insta-grid{grid-template-columns:repeat(3,1fr)}
+.nl-form{flex-direction:column}
+.footer-grid{grid-template-columns:1fr}
+.mama-grid{grid-template-columns:1fr 1fr}
+.review-card{min-width:280px}
+.product-info{padding:12px 14px 16px}
+.product-name{font-size:.88rem}
+.product-footer{flex-direction:column;align-items:flex-start;gap:8px}
+.add-cart-btn{width:100%;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- 1. TOP BAR -->
+<div class="top-bar">🌿 初回送料無料キャンペーン実施中 ｜ 税込5,500円以上で送料無料</div>
+
+<!-- 2. HEADER -->
+<header class="header" id="header">
+<div class="header-inner">
+  <a href="#" class="logo">
+    <span class="logo-main">木と暮らし</span>
+    <span class="logo-sub">natural select shop</span>
+  </a>
+  <nav class="nav">
+    <a href="#shop">ショップ</a>
+    <a href="#ranking">ランキング</a>
+    <a href="#story">私たちのこと</a>
+    <a href="#seasonal">季節のレシピ</a>
+    <a href="https://instagram.com/ju_chi" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <div class="header-icons">
+    <button aria-label="検索"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></button>
+    <button aria-label="お気に入り"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+    <button aria-label="カート" id="cartBtn"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-badge" id="cartBadge" style="display:none">0</span></button>
+    <div class="hamburger" id="hamburger" aria-label="メニュー"><span></span><span></span><span></span></div>
+  </div>
+</div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#shop">ショップ</a>
+  <a href="#ranking">ランキング</a>
+  <a href="#story">私たちのこと</a>
+  <a href="#seasonal">季節のレシピ</a>
+  <a href="https://instagram.com/ju_chi" target="_blank" rel="noopener">Instagram</a>
+</nav>
+
+<!-- 3. HERO -->
+<section class="hero">
+<div class="hero-grid">
+  <div class="hero-grid-item"></div>
+  <div class="hero-grid-item"></div>
+  <div class="hero-grid-item"></div>
+</div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+  <p class="hero-tag">— since 2020 —</p>
+  <h1 class="hero-title">自然に寄り添う、やさしい暮らしを。</h1>
+  <p class="hero-desc">家族みんなが安心して使える自然派アイテムを、日本全国の作り手から厳選してお届けします。</p>
+  <div class="hero-buttons">
+    <a href="#shop" class="btn btn-primary">ショップを見る</a>
+    <a href="#story" class="btn btn-secondary" style="border-color:#fff;color:#fff;background:rgba(255,255,255,.15)">私たちのこと</a>
+  </div>
+</div>
+</section>
+
+<!-- 4. FEATURES STRIP -->
+<div class="features">
+<div class="features-inner">
+  <div class="feature-item"><span>🚚</span> 5,500円以上送料無料</div>
+  <div class="feature-item"><span>🌿</span> 100%天然由来成分</div>
+  <div class="feature-item"><span>🐰</span> 動物実験フリー</div>
+  <div class="feature-item"><span>📦</span> エコ包装</div>
+  <div class="feature-item"><span>↩️</span> 30日間返品OK</div>
+</div>
+</div>
+
+<!-- 5. CATEGORIES -->
+<section class="categories" id="categories">
+<div class="container">
+  <p class="section-label fade-in">Category</p>
+  <h2 class="section-title fade-in">カテゴリーから探す</h2>
+  <div class="cat-grid">
+    <div class="cat-card fade-in"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=530&fit=crop" alt="スキンケア" loading="lazy"><div class="cat-overlay"><h3>スキンケア</h3><span>42 items</span></div></div>
+    <div class="cat-card fade-in"><img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=530&fit=crop" alt="オーガニック食品" loading="lazy"><div class="cat-overlay"><h3>オーガニック食品</h3><span>38 items</span></div></div>
+    <div class="cat-card fade-in"><img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=400&h=530&fit=crop" alt="アロマ・癒し" loading="lazy"><div class="cat-overlay"><h3>アロマ・癒し</h3><span>25 items</span></div></div>
+    <div class="cat-card fade-in"><img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&h=530&fit=crop" alt="ベビー・キッズ" loading="lazy"><div class="cat-overlay"><h3>ベビー・キッズ</h3><span>31 items</span></div></div>
+    <div class="cat-card fade-in"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=530&fit=crop" alt="キッチン雑貨" loading="lazy"><div class="cat-overlay"><h3>キッチン雑貨</h3><span>19 items</span></div></div>
+  </div>
+</div>
+</section>
+
+<!-- 6. SHOP / NEW ARRIVALS -->
+<section class="shop" id="shop">
+<div class="container">
+  <p class="section-label fade-in">Shop</p>
+  <h2 class="section-title fade-in">新着アイテム</h2>
+  <div class="product-grid" id="productGrid"></div>
+</div>
+</section>
+
+<!-- 7. RANKING -->
+<section class="ranking" id="ranking">
+<div class="container">
+  <p class="section-label fade-in">Best Sellers</p>
+  <h2 class="section-title fade-in">今月の人気ランキング</h2>
+  <div class="ranking-grid" id="rankingGrid"></div>
+</div>
+</section>
+
+<!-- 8. STORY -->
+<section class="story" id="story">
+<div class="container">
+  <div class="story-inner">
+    <div class="story-images fade-in">
+      <div class="img-full"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=700&h=400&fit=crop" alt="畑のイメージ" loading="lazy"></div>
+      <div class="img-half"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=400&h=300&fit=crop" alt="手作りのイメージ" loading="lazy"></div>
+      <div class="img-half"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=300&fit=crop" alt="自然のイメージ" loading="lazy"></div>
+    </div>
+    <div class="story-text fade-in">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">子育てから生まれた、<br>自然派への想い。</h2>
+      <p>2020年、第一子の誕生をきっかけに「木と暮らし」は始まりました。子どもの肌に触れるもの、口に入るもの——すべてに安心を求めて探し続けた日々が、このショップの原点です。</p>
+      <p>農薬不使用の原料、化学物質フリーの製造工程、できるだけ国産の素材にこだわり、日本全国の丁寧な作り手さんたちと直接つながりながら、家族みんなが笑顔で使えるアイテムだけを厳選しています。</p>
+      <a href="#" class="btn btn-secondary" style="margin-top:8px">もっと読む →</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 9. SEASONAL RECIPES -->
+<section class="seasonal" id="seasonal">
+<div class="container">
+  <p class="section-label fade-in">Seasonal</p>
+  <h2 class="section-title fade-in">季節のレシピ＆暮らしのヒント</h2>
+  <div class="recipe-grid">
+    <div class="recipe-card fade-in">
+      <div class="recipe-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop" alt="デトックスサラダ" loading="lazy"></div>
+      <div class="recipe-body">
+        <h3>春野菜たっぷり！デトックスサラダ</h3>
+        <p>旬の春野菜をたっぷり使った、身体が喜ぶデトックスサラダ。ドレッシングも手作りで安心。</p>
+        <div class="recipe-meta"><span>⏱ 15分</span><span>👤 2人分</span><span>🌱 ヴィーガン対応</span></div>
+      </div>
+    </div>
+    <div class="recipe-card fade-in">
+      <div class="recipe-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop" alt="かぼちゃのポタージュ" loading="lazy"></div>
+      <div class="recipe-body">
+        <h3>子どもも大好き！かぼちゃの豆乳ポタージュ</h3>
+        <p>甘くて濃厚なかぼちゃを豆乳でやさしく仕上げた、お子さまにも大人にも人気のスープ。</p>
+        <div class="recipe-meta"><span>⏱ 25分</span><span>👤 4人分</span><span>👶 離乳食OK</span></div>
+      </div>
+    </div>
+    <div class="recipe-card fade-in">
+      <div class="recipe-img"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&h=400&fit=crop" alt="米粉マフィン" loading="lazy"></div>
+      <div class="recipe-body">
+        <h3>米粉とはちみつの簡単マフィン</h3>
+        <p>グルテンフリーでやさしい甘さ。お子さまのおやつにもぴったりの簡単レシピです。</p>
+        <div class="recipe-meta"><span>⏱ 35分</span><span>🧁 8個分</span><span>🌾 グルテンフリー</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 10. INSTAGRAM -->
+<section class="instagram" id="instagram">
+<div class="container" style="text-align:center">
+  <p class="section-label fade-in">Instagram</p>
+  <h2 class="section-title fade-in">日々の暮らしをシェア</h2>
+  <p class="insta-handle fade-in">@ju_chi</p>
+  <div class="insta-grid" id="instaGrid"></div>
+  <a href="https://instagram.com/ju_chi" target="_blank" rel="noopener" class="btn-instagram">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+    @ju_chi をフォローする
+  </a>
+</div>
+</section>
+
+<!-- 11. REVIEWS -->
+<section class="reviews" id="reviews">
+<div class="container">
+  <p class="section-label fade-in">Reviews</p>
+  <h2 class="section-title fade-in">お客さまの声</h2>
+  <div class="review-track" id="reviewTrack"></div>
+</div>
+</section>
+
+<!-- 12. MAMA FEATURES -->
+<section class="mama" id="mama">
+<div class="container" style="text-align:center">
+  <p class="section-label fade-in">For You</p>
+  <h2 class="section-title fade-in">忙しいママにうれしい機能</h2>
+  <div class="mama-grid">
+    <div class="mama-card fade-in"><div class="mama-icon">📅</div><h3>定期便で買い忘れゼロ</h3><p>毎月届く定期便で消耗品を自動補充。いつでもスキップ・解約OK。</p></div>
+    <div class="mama-card fade-in"><div class="mama-icon">🎁</div><h3>ギフトラッピング無料</h3><p>出産祝い・誕生日に。メッセージカードも添えられます。</p></div>
+    <div class="mama-card fade-in"><div class="mama-icon">📱</div><h3>LINEでかんたん注文</h3><p>友だち追加で再注文がワンタップ。クーポン配信もLINEで。</p></div>
+    <div class="mama-card fade-in"><div class="mama-icon">🧒</div><h3>年齢別おすすめ診断</h3><p>お子さまの年齢に合わせた安心アイテムを自動提案。</p></div>
+    <div class="mama-card fade-in"><div class="mama-icon">💰</div><h3>ポイント＆ランク制度</h3><p>買うほどお得に！シルバー・ゴールド会員で割引率UP。</p></div>
+    <div class="mama-card fade-in"><div class="mama-icon">📝</div><h3>成分チェッカー</h3><p>気になる成分をワンタップで確認。アレルギー対応表示も。</p></div>
+  </div>
+</div>
+</section>
+
+<!-- 13. NEWSLETTER -->
+<section class="newsletter">
+<div class="container">
+  <div class="newsletter-card fade-in">
+    <h2>🌿 自然派ニュースレター</h2>
+    <p>新商品・セール情報・季節のレシピを毎週お届け。今なら登録で500ptプレゼント！</p>
+    <form class="nl-form" id="nlForm">
+      <input type="email" placeholder="メールアドレスを入力" required>
+      <button type="submit">登録する</button>
+    </form>
+  </div>
+</div>
+</section>
+
+<!-- 14. FOOTER -->
+<footer class="footer">
+<div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo"><span class="logo-main">木と暮らし</span><span class="logo-sub">natural select shop</span></div>
+      <p>家族みんなが安心して使える自然派アイテムを、日本全国の作り手から厳選してお届けするオンラインセレクトショップです。</p>
+    </div>
+    <div>
+      <h4>SHOP</h4>
+      <ul><li><a href="#">新着アイテム</a></li><li><a href="#">ランキング</a></li><li><a href="#">カテゴリー</a></li><li><a href="#">セール</a></li></ul>
+    </div>
+    <div>
+      <h4>ABOUT</h4>
+      <ul><li><a href="#">私たちのこと</a></li><li><a href="#">生産者紹介</a></li><li><a href="#">メディア掲載</a></li></ul>
+    </div>
+    <div>
+      <h4>HELP</h4>
+      <ul><li><a href="#">よくある質問</a></li><li><a href="#">配送について</a></li><li><a href="#">返品・交換</a></li><li><a href="#">お問い合わせ</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2020-2026 木と暮らし All rights reserved. ｜ <a href="#">特定商取引法に基づく表記</a></div>
+</div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>🛒 カート</h3>
+    <button class="cart-close" id="cartClose"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cartItems"><div class="cart-empty">カートは空です</div></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>合計（税込）</span><span id="cartTotal">¥0</span></div>
+    <button class="checkout-btn">レジに進む</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* ===== DATA ===== */
+const products = [
+  {id:1,name:'国産オーガニック化粧水',brand:'HANA Organics',price:3850,badge:'popular',desc:'肌にやさしい国産オーガニック成分だけで作った、敏感肌にも安心の化粧水。',img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500&h=500&fit=crop'},
+  {id:2,name:'天然はちみつ 百花蜜 300g',brand:'森の恵み養蜂場',price:2480,badge:'new',desc:'非加熱・無添加の天然はちみつ。季節の花々の香りが楽しめる百花蜜。',img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&h=500&fit=crop'},
+  {id:3,name:'竹繊維ベビーブランケット',brand:'nicobaby',price:4980,badge:'limited',desc:'天然の抗菌・吸湿性に優れた竹繊維100%。赤ちゃんの肌にやさしいブランケット。',img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=500&h=500&fit=crop'},
+  {id:4,name:'有機ルイボスティー 30包',brand:'茶々自然堂',price:1680,badge:null,desc:'南アフリカ産オーガニック茶葉を使用。ノンカフェインで家族みんなで楽しめます。',img:'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=500&h=500&fit=crop'},
+  {id:5,name:'手作り蜜蝋ラップ 3枚組',brand:'BeeEco',price:2200,badge:'popular',desc:'繰り返し使えるエコなラップ。蜜蝋とオーガニックコットンで手作りしました。',img:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=500&h=500&fit=crop'},
+  {id:6,name:'国産ひのきアロマオイル',brand:'吉野ヒノキ蒸留所',price:2980,badge:'new',desc:'奈良県吉野のひのきから水蒸気蒸留で抽出した、100%天然のエッセンシャルオイル。',img:'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=500&h=500&fit=crop'},
+  {id:7,name:'無添加 米粉パンケーキミックス',brand:'こめこベーカリー',price:980,badge:null,desc:'国産米粉100%使用。グルテンフリーでもっちりふわふわのパンケーキが簡単に。',img:'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=500&h=500&fit=crop'},
+  {id:8,name:'オーガニックコットン布ナプキン',brand:'すいーとこっとん',price:1480,badge:null,desc:'認証オーガニックコットン使用。肌にやさしく洗って繰り返し使えます。',img:'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?w=500&h=500&fit=crop'}
+];
+
+const rankingData = [
+  {name:'国産オーガニック化粧水',price:3850,stars:5,img:'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=400&fit=crop'},
+  {name:'手作り蜜蝋ラップ 3枚組',price:2200,stars:5,img:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop'},
+  {name:'天然はちみつ 百花蜜',price:2480,stars:5,img:'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop'},
+  {name:'竹繊維ベビーブランケット',price:4980,stars:4,img:'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&h=400&fit=crop'},
+  {name:'有機ルイボスティー 30包',price:1680,stars:5,img:'https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=400&fit=crop'}
+];
+
+const reviews = [
+  {stars:5,name:'ゆきこ',attr:'30代・2児のママ',text:'化粧水がとにかく良い！敏感肌の私でもヒリヒリせず、しっとりモチモチになります。子どもの保湿にも使えて、家族みんなで愛用しています。'},
+  {stars:5,name:'まりこ',attr:'40代・3児のママ',text:'はちみつの風味が全然違います。加熱していないから酵素が生きていて、子どもたちも「おいしい！」とパクパク。毎朝のヨーグルトに欠かせません。'},
+  {stars:4,name:'あやか',attr:'20代・新婚',text:'蜜蝋ラップ、最初は使い方に慣れなかったけど、今ではラップ要らず！かわいい柄でキッチンが華やぎます。エコで気分もいいです。'},
+  {stars:5,name:'さとみ',attr:'30代・1児のママ',text:'ベビーブランケットの肌触りが最高です。竹繊維って初めてでしたが、洗うたびに柔らかくなって驚きました。出産祝いにもリピート購入しています。'},
+  {stars:5,name:'ひろみ',attr:'30代・2児のママ',text:'ルイボスティー、ノンカフェインなので授乳中でも安心して飲めます。ほんのり甘くて飲みやすく、子どもたちも麦茶代わりにゴクゴク飲んでいます。'}
+];
+
+const instaImages = [
+  'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=300&h=300&fit=crop',
+  'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300&h=300&fit=crop'
+];
+
+/* ===== STATE ===== */
+let cart = [];
+let favorites = new Set();
+
+/* ===== RENDER PRODUCTS ===== */
+function renderProducts() {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = products.map(p => {
+    const badgeClass = p.badge === 'popular' ? 'badge-popular' : p.badge === 'new' ? 'badge-new' : p.badge === 'limited' ? 'badge-limited' : '';
+    const badgeText = p.badge === 'popular' ? '人気' : p.badge === 'new' ? 'NEW' : p.badge === 'limited' ? '限定' : '';
+    return `<div class="product-card fade-in">
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy">
+        ${badgeText ? `<span class="product-badge ${badgeClass}">${badgeText}</span>` : ''}
+        <button class="fav-btn ${favorites.has(p.id)?'active':''}" data-id="${p.id}" aria-label="お気に入り">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">${p.brand}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">¥${p.price.toLocaleString()}<small>（税込）</small></div>
+          <button class="add-cart-btn" data-id="${p.id}">カートに入れる</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  observeFadeIn();
+}
+
+/* ===== RENDER RANKING ===== */
+function renderRanking() {
+  const grid = document.getElementById('rankingGrid');
+  grid.innerHTML = rankingData.map(r => `<div class="rank-card fade-in">
+    <div class="rank-img"><img src="${r.img}" alt="${r.name}" loading="lazy"></div>
+    <div class="rank-info">
+      <div class="rank-name">${r.name}</div>
+      <div class="rank-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <div class="rank-price">¥${r.price.toLocaleString()}</div>
+    </div>
+  </div>`).join('');
+  observeFadeIn();
+}
+
+/* ===== RENDER REVIEWS ===== */
+function renderReviews() {
+  const track = document.getElementById('reviewTrack');
+  track.innerHTML = reviews.map(r => `<div class="review-card">
+    <div class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+    <div class="review-text">${r.text}</div>
+    <div class="review-author">
+      <div class="review-avatar">${r.name.charAt(0)}</div>
+      <div><div class="review-name">${r.name}</div><div class="review-attr">${r.attr}</div></div>
+    </div>
+  </div>`).join('');
+}
+
+/* ===== RENDER INSTAGRAM ===== */
+function renderInstagram() {
+  const grid = document.getElementById('instaGrid');
+  grid.innerHTML = instaImages.map((src, i) => {
+    const likes = Math.floor(Math.random()*300)+50;
+    const comments = Math.floor(Math.random()*30)+3;
+    return `<div class="insta-item fade-in">
+      <img src="${src}" alt="Instagram ${i+1}" loading="lazy">
+      <div class="insta-overlay"><span>♥ ${likes}</span><span>💬 ${comments}</span></div>
+    </div>`;
+  }).join('');
+  observeFadeIn();
+}
+
+/* ===== CART ===== */
+function updateCartBadge() {
+  const badge = document.getElementById('cartBadge');
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+}
+
+function renderCart() {
+  const items = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    items.innerHTML = '<div class="cart-empty">カートは空です</div>';
+    footer.style.display = 'none';
+    return;
+  }
+  footer.style.display = 'block';
+  items.innerHTML = cart.map(ci => {
+    const p = products.find(x => x.id === ci.id);
+    return `<div class="cart-item">
+      <div class="cart-item-img"><img src="${p.img}" alt="${p.name}"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-brand">${p.brand}</div>
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-qty">
+          <button onclick="changeQty(${ci.id},-1)">−</button>
+          <span>${ci.qty}</span>
+          <button onclick="changeQty(${ci.id},1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-price">¥${(p.price*ci.qty).toLocaleString()}</div>
+    </div>`;
+  }).join('');
+  const total = cart.reduce((s, ci) => s + products.find(x=>x.id===ci.id).price * ci.qty, 0);
+  document.getElementById('cartTotal').textContent = '¥' + total.toLocaleString();
+}
+
+function addToCart(id) {
+  const existing = cart.find(i => i.id === id);
+  if (existing) existing.qty++;
+  else cart.push({id, qty: 1});
+  updateCartBadge();
+  renderCart();
+  const p = products.find(x => x.id === id);
+  showToast(`${p.name} をカートに追加しました`);
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  updateCartBadge();
+  renderCart();
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ===== FAVORITES ===== */
+function toggleFav(id) {
+  const p = products.find(x => x.id === id);
+  if (favorites.has(id)) {
+    favorites.delete(id);
+    showToast(`${p.name} をお気に入りから削除しました`);
+  } else {
+    favorites.add(id);
+    showToast(`${p.name} をお気に入りに追加しました`);
+  }
+  renderProducts();
+}
+
+/* ===== TOAST ===== */
+function showToast(msg) {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 2500);
+}
+
+/* ===== SCROLL FADE-IN ===== */
+function observeFadeIn() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+  }, {threshold: 0.1});
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+}
+
+/* ===== HEADER SCROLL ===== */
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+/* ===== HAMBURGER ===== */
+document.getElementById('hamburger').addEventListener('click', function() {
+  this.classList.toggle('active');
+  document.getElementById('mobileNav').classList.toggle('open');
+});
+document.querySelectorAll('.mobile-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('mobileNav').classList.remove('open');
+  });
+});
+
+/* ===== EVENT DELEGATION ===== */
+document.addEventListener('click', (e) => {
+  const cartBtn = e.target.closest('.add-cart-btn');
+  if (cartBtn) { addToCart(+cartBtn.dataset.id); return; }
+  const favBtn = e.target.closest('.fav-btn');
+  if (favBtn) { toggleFav(+favBtn.dataset.id); return; }
+});
+
+document.getElementById('cartBtn').addEventListener('click', openCart);
+document.getElementById('cartClose').addEventListener('click', closeCart);
+document.getElementById('cartOverlay').addEventListener('click', closeCart);
+
+/* ===== NEWSLETTER ===== */
+document.getElementById('nlForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  showToast('ニュースレターに登録しました！500ptプレゼント 🎉');
+  e.target.reset();
+});
+
+/* ===== INIT ===== */
+renderProducts();
+renderRanking();
+renderReviews();
+renderInstagram();
+observeFadeIn();
+</script>
+</body>
+</html>
