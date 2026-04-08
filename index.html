@@ -171,12 +171,8 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 /* ===== 10. INSTAGRAM ===== */
 .instagram{background:var(--cream);padding:80px 0}
 .insta-handle{font-family:var(--ff-en);font-style:italic;color:var(--text-sub);font-size:1rem;letter-spacing:.1em}
-.insta-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:40px 0}
-.insta-item{aspect-ratio:1;overflow:hidden;border-radius:6px;position:relative;cursor:pointer}
-.insta-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.insta-item:hover img{transform:scale(1.1)}
-.insta-overlay{position:absolute;inset:0;background:rgba(61,50,38,.5);display:flex;align-items:center;justify-content:center;gap:16px;opacity:0;transition:opacity .3s;color:#fff;font-size:.8rem}
-.insta-item:hover .insta-overlay{opacity:1}
+.insta-embed-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:40px 0}
+.insta-embed-grid iframe{border:none;border-radius:var(--radius);box-shadow:var(--shadow);width:100%;min-height:400px}
 .btn-instagram{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:14px 36px;border-radius:40px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:transform .3s,box-shadow .3s}
 .btn-instagram:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,39,67,.3)}
 
@@ -271,7 +267,7 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 .footer-grid{grid-template-columns:1fr 1fr}
 .ranking-grid{grid-template-columns:repeat(3,1fr)}
 .cat-grid{grid-template-columns:repeat(3,1fr)}
-.insta-grid{grid-template-columns:repeat(4,1fr)}
+.insta-embed-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
 .hero{min-height:80vh}
@@ -280,7 +276,7 @@ section,.shop,.ranking,.mama,.instagram,.reviews,.seasonal,.newsletter,.story,.c
 .cat-grid{grid-template-columns:repeat(2,1fr)}
 .recipe-grid{grid-template-columns:1fr}
 .ranking-grid{grid-template-columns:repeat(2,1fr)}
-.insta-grid{grid-template-columns:repeat(3,1fr)}
+.insta-embed-grid{grid-template-columns:1fr}
 .nl-form{flex-direction:column}
 .footer-grid{grid-template-columns:1fr}
 .mama-grid{grid-template-columns:1fr 1fr}
@@ -450,7 +446,16 @@ section,.shop,.ranking,.mama,.instagram,.reviews,.seasonal,.newsletter,.story,.c
   <p class="section-label fade-in">Instagram</p>
   <h2 class="section-title fade-in">日々の暮らしをシェア</h2>
   <p class="insta-handle fade-in">@ju_chi</p>
-  <div class="insta-grid" id="instaGrid"></div>
+  <div class="insta-embed-grid fade-in">
+    <iframe src="https://www.instagram.com/p/DWxriPvkxWl/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DWn2l33k2hr/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DV-Ozs-E90m/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DVxyeMxER2R/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DVXxchfE6zX/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DU5F7tGk_16/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DTkeb_fE_tB/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+    <iframe src="https://www.instagram.com/p/DTPZrFqEYu4/embed/" loading="lazy" allowtransparency="true" scrolling="no"></iframe>
+  </div>
   <a href="https://instagram.com/ju_chi" target="_blank" rel="noopener" class="btn-instagram">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
     @ju_chi をフォローする
@@ -568,16 +573,6 @@ const reviews = [
   {stars:5,name:'ひろみ',attr:'30代・2児のママ',text:'ルイボスティー、ノンカフェインなので授乳中でも安心して飲めます。ほんのり甘くて飲みやすく、子どもたちも麦茶代わりにゴクゴク飲んでいます。'}
 ];
 
-const instaImages = [
-  'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=300&h=300&fit=crop',
-  'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300&h=300&fit=crop'
-];
 
 /* ===== STATE ===== */
 let cart = [];
@@ -638,19 +633,6 @@ function renderReviews() {
   </div>`).join('');
 }
 
-/* ===== RENDER INSTAGRAM ===== */
-function renderInstagram() {
-  const grid = document.getElementById('instaGrid');
-  grid.innerHTML = instaImages.map((src, i) => {
-    const likes = Math.floor(Math.random()*300)+50;
-    const comments = Math.floor(Math.random()*30)+3;
-    return `<div class="insta-item fade-in">
-      <img src="${src}" alt="Instagram ${i+1}" loading="lazy">
-      <div class="insta-overlay"><span>♥ ${likes}</span><span>💬 ${comments}</span></div>
-    </div>`;
-  }).join('');
-  observeFadeIn();
-}
 
 /* ===== CART ===== */
 function updateCartBadge() {
@@ -790,7 +772,6 @@ document.getElementById('nlForm').addEventListener('submit', (e) => {
 renderProducts();
 renderRanking();
 renderReviews();
-renderInstagram();
 observeFadeIn();
 </script>
 </body>
