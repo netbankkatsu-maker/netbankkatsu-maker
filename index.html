@@ -256,9 +256,8 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 @keyframes toastOut{to{opacity:0;transform:translateY(16px)}}
 
 /* ===== FADE-IN ===== */
-.fade-in{opacity:1;transform:translateY(0);transition:opacity .6s ease,transform .6s ease}
-.js-ready .fade-in{opacity:0;transform:translateY(24px)}
-.js-ready .fade-in.visible{opacity:1;transform:translateY(0)}
+.fade-in.hidden{opacity:0;transform:translateY(24px)}
+.fade-in{transition:opacity .6s ease,transform .6s ease}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
@@ -705,18 +704,13 @@ function showToast(msg) {
 
 /* ===== SCROLL FADE-IN ===== */
 function observeFadeIn() {
-  const els = document.querySelectorAll('.fade-in:not(.visible)');
-  if (!('IntersectionObserver' in window)) {
-    els.forEach(el => el.classList.add('visible'));
-    return;
-  }
+  const els = document.querySelectorAll('.fade-in:not(.animated)');
+  els.forEach(el => { el.classList.add('hidden'); el.classList.add('animated'); });
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('hidden'); observer.unobserve(e.target); }});
   }, {threshold: 0.05, rootMargin: '0px 0px 50px 0px'});
   els.forEach(el => observer.observe(el));
 }
-// Run on load and also after a short delay to catch elements already in view
-window.addEventListener('load', () => { observeFadeIn(); setTimeout(observeFadeIn, 300); });
 
 /* ===== HEADER SCROLL ===== */
 window.addEventListener('scroll', () => {
@@ -758,7 +752,6 @@ document.getElementById('nlForm').addEventListener('submit', (e) => {
 renderProducts();
 renderRanking();
 renderReviews();
-document.body.classList.add('js-ready');
 observeFadeIn();
 </script>
 </body>
