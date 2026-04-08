@@ -256,8 +256,8 @@ button{cursor:pointer;font-family:inherit;border:none;background:none}
 @keyframes toastOut{to{opacity:0;transform:translateY(16px)}}
 
 /* ===== FADE-IN ===== */
-.fade-in.hidden{opacity:0;transform:translateY(24px)}
-.fade-in{transition:opacity .6s ease,transform .6s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-in-active{animation:fadeInUp .6s ease forwards}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
@@ -703,12 +703,11 @@ function showToast(msg) {
 
 /* ===== SCROLL FADE-IN ===== */
 function observeFadeIn() {
-  const els = document.querySelectorAll('.fade-in:not(.animated)');
-  els.forEach(el => { el.classList.add('hidden'); el.classList.add('animated'); });
+  const els = document.querySelectorAll('.fade-in:not(.observed)');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.remove('hidden'); observer.unobserve(e.target); }});
-  }, {threshold: 0.05, rootMargin: '0px 0px 50px 0px'});
-  els.forEach(el => observer.observe(el));
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('fade-in-active'); observer.unobserve(e.target); }});
+  }, {threshold: 0.01, rootMargin: '0px 0px 100px 0px'});
+  els.forEach(el => { el.classList.add('observed'); observer.observe(el); });
 }
 
 /* ===== HEADER SCROLL ===== */
