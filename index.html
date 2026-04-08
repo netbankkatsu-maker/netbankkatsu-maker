@@ -689,7 +689,6 @@ function toggleFav(id) {
     favorites.add(id);
     showToast(`${p.name} をお気に入りに追加しました`);
   }
-  renderProducts();
 }
 
 /* ===== TOAST ===== */
@@ -749,8 +748,6 @@ document.getElementById('nlForm').addEventListener('submit', (e) => {
 });
 
 /* ===== INIT ===== */
-renderProducts();
-renderRanking();
 renderReviews();
 observeFadeIn();
 </script>
